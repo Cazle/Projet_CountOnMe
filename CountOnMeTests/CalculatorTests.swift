@@ -12,7 +12,7 @@ import XCTest
 final class CountOnMeTests: XCTestCase {
 
     func testCalculatorIsHere(){
-        let calc = Calculator()
+        let _ = Calculator()
     }
-
+    
 }
