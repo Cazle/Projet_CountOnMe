@@ -1,11 +1,3 @@
-//
-//  Calculator.swift
-//  CountOnMe
-//
-//  Created by Kyllian GUILLOT on 03/07/2023.
-//  Copyright © 2023 Vincent Saluzzo. All rights reserved.
-//
-
 import Foundation
 
 
@@ -19,7 +11,7 @@ class Calculator {
     
     // Error check computed variables
     var expressionIsCorrect: Bool {
-        return elements.last != "+" && elements.last != "-"
+        return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "/"
     }
     
     var expressionHaveEnoughElement: Bool {
@@ -27,7 +19,7 @@ class Calculator {
     }
     
     var canAddOperator: Bool {
-        return elements.last != "+" && elements.last != "-"
+        return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "/"
     }
     
     var expressionHaveResult: Bool {
@@ -39,7 +31,9 @@ class Calculator {
     func addingText(addText: String){
         text.append(addText)
     }
-    func calculate() -> Int{
+    
+    
+    func calculate() -> String{
         // Create local copy of operations
         var operationsToReduce = elements
         
@@ -49,18 +43,21 @@ class Calculator {
             let operand = operationsToReduce[1]
             let right = Int(operationsToReduce[2])!
             
+            
             let result: Int
             switch operand {
             case "+": result = left + right
             case "-": result = left - right
+            case "x": result = left * right
+            case "/": result = left / right
+                
             default: fatalError("Unknown operator !")
             }
+            
             operationsToReduce = Array(operationsToReduce.dropFirst(3))
             operationsToReduce.insert("\(result)", at: 0)
         }
-        guard let finalResult = Int(operationsToReduce[0]) else {
-            fatalError("Something wrong happened")
-        }
-        return finalResult
+        
+        return operationsToReduce[0]
     }
 }

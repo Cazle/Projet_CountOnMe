@@ -44,7 +44,24 @@ class ViewController: UIViewController {
             return
         }
     }
-
+    
+    @IBAction func tappedMultiplicationButton(_ sender: UIButton) {
+        if calculator.canAddOperator {
+            textView.text.append(" x ")
+            calculator.addingText(addText: " x ")
+        } else {
+            alertFunction(title: "Error", message: "You have to add one operator at a time.")
+        }
+    }
+    
+    @IBAction func tappedDivisionButton(_ sender: UIButton) {
+        if calculator.canAddOperator {
+            textView.text.append(" / ")
+            calculator.addingText(addText: " / ")
+        } else {
+            alertFunction(title: "Error", message: "You have to add one operator at a time.")
+        }    }
+    
     @IBAction func tappedACButton(_ sender: UIButton) {
         textView.text = calculator.resetingCalculator
         calculator.text = ""
