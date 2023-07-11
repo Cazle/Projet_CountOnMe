@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "C1134440-D5FE-49CF-B0D0-A39FDFFD26B1",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:CountOnMe.xcodeproj",
+      "identifier" : "1FA43BCE224E569900F565CB",
+      "name" : "CountOnMe"
+    },
+    "testExecutionOrdering" : "random"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:CountOnMe.xcodeproj",
+        "identifier" : "29C935162A5327DC000ED5D2",
+        "name" : "CountOnMeTests"
+      }
+    }
+  ],
+  "version" : 1
+}

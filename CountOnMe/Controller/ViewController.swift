@@ -1,8 +1,12 @@
 import UIKit
 
-class ViewController: UIViewController {
+protocol functionsToDelegate {
+    func alertFunction(title: String, message: String)
+    func insertToTextView(add: String)
+}
+
+class ViewController: UIViewController, functionsToDelegate {
     @IBOutlet weak var textView: UITextView!
-    @IBOutlet var numberButtons: [UIButton]!
     
     let calculator = Calculator()
     
@@ -11,9 +15,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         textView.text = ""
         calculator.addingText(addText: "")
+        calculator.delegate = self
     }
-    
-    
+
     // View actions
     @IBAction func tappedNumberButton(_ sender: UIButton) {
         guard let numberText = sender.title(for: .normal) else {
@@ -77,12 +81,15 @@ class ViewController: UIViewController {
             alertFunction(title: "Zéro!", message: "Démarrez un nouveau calcul !")
             return
         }
-        textView.text.append(" = \(calculator.calculate())")
+        calculator.calculate()
     }
     func alertFunction(title: String, message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        return self.present(alertVC, animated: true, completion: nil)
+        present(alertVC, animated: true, completion: nil)
+    }
+    func insertToTextView(add: String){
+        textView.text.append(add)
     }
 }
 

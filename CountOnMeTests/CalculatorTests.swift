@@ -4,13 +4,9 @@ import XCTest
 
 final class CountOnMeTests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
+    func test_whenTheUserTryAnAdditionAndWantToGetTheResult(){
+        let sut = Calculator()
+        sut.addingText(addText: "1 + 1")
     }
-    func testCalculatorIsHere(){
-        let _ = Calculator()
-    }
-    func testTextAddition(){
-        
-    }
+    
 }

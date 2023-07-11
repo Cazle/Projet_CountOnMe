@@ -3,6 +3,8 @@ import Foundation
 
 class Calculator {
 
+    var delegate: functionsToDelegate?
+    
     var text = ""
     
     var elements: [String] {
@@ -33,9 +35,10 @@ class Calculator {
     }
     
     
-    func calculate() -> String {
+    func calculate() {
         // Create local copy of operations
         var operationsToReduce = elements
+        print("this is the first", operationsToReduce)
         
         // Iterate over operations while an operand still here
         while operationsToReduce.count > 1 {
@@ -55,8 +58,7 @@ class Calculator {
             
             operationsToReduce = Array(operationsToReduce.dropFirst(3))
             operationsToReduce.insert("\(result)", at: 0)
+            delegate?.insertToTextView(add: " = " + operationsToReduce[0])
         }
-        
-        return operationsToReduce[0]
     }
 }

@@ -34,6 +34,7 @@
 		1FA43BD9224E569A00F565CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FA43BDC224E569A00F565CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1FA43BDE224E569A00F565CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		295F5B092A5D6884006AFCD7 /* CountOnMe.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CountOnMe.xctestplan; sourceTree = "<group>"; };
 		29C935112A53267E000ED5D2 /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 		29C935172A5327DC000ED5D2 /* CountOnMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		29C935192A5327DD000ED5D2 /* CalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTests.swift; sourceTree = "<group>"; };
@@ -60,6 +61,7 @@
 		1FA43BC6224E569900F565CB = {
 			isa = PBXGroup;
 			children = (
+				295F5B092A5D6884006AFCD7 /* CountOnMe.xctestplan */,
 				1FA43BD1224E569900F565CB /* CountOnMe */,
 				29C935182A5327DD000ED5D2 /* CountOnMeTests */,
 				1FA43BD0224E569900F565CB /* Products */,
