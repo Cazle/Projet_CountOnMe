@@ -2,7 +2,7 @@ import Foundation
 
 
 class Calculator {
-    
+
     var text = ""
     
     var elements: [String] {
@@ -33,7 +33,7 @@ class Calculator {
     }
     
     
-    func calculate() -> String{
+    func calculate() -> String {
         // Create local copy of operations
         var operationsToReduce = elements
         
@@ -42,8 +42,7 @@ class Calculator {
             let left = Int(operationsToReduce[0])!
             let operand = operationsToReduce[1]
             let right = Int(operationsToReduce[2])!
-            
-            
+        
             let result: Int
             switch operand {
             case "+": result = left + right
