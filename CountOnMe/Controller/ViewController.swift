@@ -3,6 +3,7 @@ import UIKit
 protocol functionsToDelegate {
     func alertFunction(title: String, message: String)
     func insertToTextView(add: String)
+    func viewEqualNone()
 }
 
 class ViewController: UIViewController, functionsToDelegate {
@@ -43,8 +44,7 @@ class ViewController: UIViewController, functionsToDelegate {
     }
     
     @IBAction func tappedACButton(_ sender: UIButton) {
-        textView.text = calculator.resetingCalculator
-        calculator.text = ""
+        calculator.resetingCalculator()
     }
     
     @IBAction func tappedEqualButton(_ sender: UIButton) {
@@ -57,6 +57,9 @@ class ViewController: UIViewController, functionsToDelegate {
     }
     func insertToTextView(add: String){
         textView.text.append(add)
+    }
+    func viewEqualNone(){
+        textView.text = ""
     }
 }
 

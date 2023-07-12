@@ -27,8 +27,10 @@ class Calculator {
     var expressionHaveResult: Bool {
         return text.firstIndex(of: "=") != nil
     }
-    var resetingCalculator : String {
-        return  ""
+    
+    func resetingCalculator(){
+        delegate?.viewEqualNone()
+        text = ""
     }
     func addingText(addText: String){
         text.append(addText)
@@ -57,7 +59,7 @@ class Calculator {
         }
         // Create local copy of operations
         var operationsToReduce = elements
-        print("this is the first", operationsToReduce)
+        print(operationsToReduce)
         
         // Iterate over operations while an operand still here
         while operationsToReduce.count > 1 {
@@ -78,6 +80,8 @@ class Calculator {
             operationsToReduce = Array(operationsToReduce.dropFirst(3))
             operationsToReduce.insert("\(result)", at: 0)
             delegate?.insertToTextView(add: " = " + operationsToReduce[0])
+            text.removeAll()
+            addingText(addText: operationsToReduce[0])
         }
     }
 }
