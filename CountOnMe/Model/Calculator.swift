@@ -33,9 +33,28 @@ class Calculator {
     func addingText(addText: String){
         text.append(addText)
     }
-    
+    func addingOperand(operand: String){
+        if canAddOperator {
+            delegate?.insertToTextView(add: operand)
+            addingText(addText: operand)
+        } else {
+            delegate?.alertFunction(title: "Error", message: "You have to add one operator at a time.")
+            return
+        }
+    }
+    func addingNumberText(numbertext: String){
+        if expressionHaveResult {
+            delegate?.insertToTextView(add: "")
+        }
+        delegate?.insertToTextView(add: numbertext)
+        addingText(addText: numbertext)
+    }
     
     func calculate() {
+        guard expressionIsCorrect && expressionHaveEnoughElement else {
+            delegate?.alertFunction(title: "Error", message: "Invalid behavior. You must have at least 3 elements, and don't finish by an operator. ")
+            return
+        }
         // Create local copy of operations
         var operationsToReduce = elements
         print("this is the first", operationsToReduce)

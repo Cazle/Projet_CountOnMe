@@ -23,49 +23,24 @@ class ViewController: UIViewController, functionsToDelegate {
         guard let numberText = sender.title(for: .normal) else {
             return
         }
-        if calculator.expressionHaveResult {
-            textView.text = ""
-        }
-        textView.text.append(numberText)
-        calculator.addingText(addText: numberText)
+        calculator.addingNumberText(numbertext: numberText)
     }
     
     @IBAction func tappedAdditionButton(_ sender: UIButton) {
-        if calculator.canAddOperator {
-            textView.text.append(" + ")
-            calculator.addingText(addText: " + ")
-        } else {
-            alertFunction(title: "Error", message: "You have to add one operator at a time.")
-            return
-        }
+        calculator.addingOperand(operand: " + ")
     }
     
     @IBAction func tappedSubstractionButton(_ sender: UIButton) {
-        if calculator.canAddOperator {
-            textView.text.append(" - ")
-            calculator.addingText(addText: " - ")
-        } else {
-            alertFunction(title: "Error", message: "You have to add one operator at a time.")
-            return
-        }
+        calculator.addingOperand(operand: " - ")
     }
     
     @IBAction func tappedMultiplicationButton(_ sender: UIButton) {
-        if calculator.canAddOperator {
-            textView.text.append(" x ")
-            calculator.addingText(addText: " x ")
-        } else {
-            alertFunction(title: "Error", message: "You have to add one operator at a time.")
-        }
+        calculator.addingOperand(operand: " x ")
     }
     
     @IBAction func tappedDivisionButton(_ sender: UIButton) {
-        if calculator.canAddOperator {
-            textView.text.append(" / ")
-            calculator.addingText(addText: " / ")
-        } else {
-            alertFunction(title: "Error", message: "You have to add one operator at a time.")
-        }    }
+        calculator.addingOperand(operand: " / ")
+    }
     
     @IBAction func tappedACButton(_ sender: UIButton) {
         textView.text = calculator.resetingCalculator
@@ -73,14 +48,6 @@ class ViewController: UIViewController, functionsToDelegate {
     }
     
     @IBAction func tappedEqualButton(_ sender: UIButton) {
-        guard calculator.expressionIsCorrect else {
-            alertFunction(title: "Zéro!", message: "Démarrez un nouveau calcul !")
-            return
-        }
-        guard calculator.expressionHaveEnoughElement else {
-            alertFunction(title: "Zéro!", message: "Démarrez un nouveau calcul !")
-            return
-        }
         calculator.calculate()
     }
     func alertFunction(title: String, message: String) {
