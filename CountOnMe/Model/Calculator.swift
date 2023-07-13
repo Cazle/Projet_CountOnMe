@@ -63,23 +63,33 @@ class Calculator {
         
         // Iterate over operations while an operand still here
         while operationsToReduce.count > 1 {
-            let left = Int(operationsToReduce[0])!
+            let left = Float(operationsToReduce[0])!
             let operand = operationsToReduce[1]
-            let right = Int(operationsToReduce[2])!
+            let right = Float(operationsToReduce[2])!
+            
         
-            let result: Int
+            var result: Float = 0
+            let formation = NumberFormatter()
+            
             switch operand {
             case "+": result = left + right
             case "-": result = left - right
             case "x": result = left * right
-            case "/": result = left / right
+            case "/":
+                if right == 0 {
+                    delegate?.alertFunction(title: "Error", message: "Can't divide by zero")
+                    resetingCalculator()
+                } else {
+                    result = left / right
+                }
                 
             default: fatalError("Unknown operator !")
             }
             
             operationsToReduce = Array(operationsToReduce.dropFirst(3))
             operationsToReduce.insert("\(result)", at: 0)
-            delegate?.insertToTextView(add: " = " + operationsToReduce[0])
+            delegate?.viewEqualNone()
+            delegate?.insertToTextView(add: operationsToReduce[0])
             text.removeAll()
             addingText(addText: operationsToReduce[0])
         }
