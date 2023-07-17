@@ -11,7 +11,7 @@ final class CountOnMeTests: XCTestCase {
         sut.addingNumberText(numbertext: "1")
         sut.calculate()
         
-        XCTAssertEqual(sut.text, "2.0")
+        XCTAssertEqual(sut.text, "2")
     }
     func test_whenUserTryASubstractionAndWantToGetResult(){
         let sut = Calculator()
@@ -20,7 +20,7 @@ final class CountOnMeTests: XCTestCase {
         sut.addingNumberText(numbertext: "1")
         sut.calculate()
         
-        XCTAssertEqual(sut.text, "5.0")
+        XCTAssertEqual(sut.text, "5")
     }
     func test_whenUserTryADivisionAndWantToGetResult(){
         let sut = Calculator()
@@ -29,7 +29,7 @@ final class CountOnMeTests: XCTestCase {
         sut.addingNumberText(numbertext: "2")
         sut.calculate()
         
-        XCTAssertEqual(sut.text, "5.0")
+        XCTAssertEqual(sut.text, "5")
     }
     func test_whenUserTryAMultiplicationAndWantToGetResult(){
         let sut = Calculator()
@@ -38,7 +38,7 @@ final class CountOnMeTests: XCTestCase {
         sut.addingNumberText(numbertext: "4")
         sut.calculate()
         
-        XCTAssertEqual(sut.text, "16.0")
+        XCTAssertEqual(sut.text, "16")
     }
     func test_forResetingTheCalculatorButOnlyTheTextPartAndNotTheView(){
         let sut = Calculator()

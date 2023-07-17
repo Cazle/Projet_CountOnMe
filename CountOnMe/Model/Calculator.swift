@@ -70,7 +70,7 @@ class Calculator {
         
             var result: Double = 0
             
-            var formater = NumberFormatter()
+            let formater = NumberFormatter()
             formater.numberStyle = .decimal
             formater.maximumFractionDigits = 2
             
