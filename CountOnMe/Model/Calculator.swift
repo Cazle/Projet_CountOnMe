@@ -63,13 +63,16 @@ class Calculator {
         
         // Iterate over operations while an operand still here
         while operationsToReduce.count > 1 {
-            let left = Float(operationsToReduce[0])!
+            let left = Double(operationsToReduce[0])!
             let operand = operationsToReduce[1]
-            let right = Float(operationsToReduce[2])!
+            let right = Double(operationsToReduce[2])!
             
         
-            var result: Float = 0
-            let formation = NumberFormatter()
+            var result: Double = 0
+            
+            var formater = NumberFormatter()
+            formater.numberStyle = .decimal
+            formater.maximumFractionDigits = 2
             
             switch operand {
             case "+": result = left + right
@@ -86,12 +89,14 @@ class Calculator {
             default: fatalError("Unknown operator !")
             }
             
-            operationsToReduce = Array(operationsToReduce.dropFirst(3))
-            operationsToReduce.insert("\(result)", at: 0)
-            delegate?.viewEqualNone()
-            delegate?.insertToTextView(add: operationsToReduce[0])
-            text.removeAll()
-            addingText(addText: operationsToReduce[0])
+            if let formatedNumber = formater.string(from: NSNumber(value: result)) {
+                operationsToReduce = Array(operationsToReduce.dropFirst(3))
+                operationsToReduce.insert("\(result)", at: 0)
+                delegate?.viewEqualNone()
+                delegate?.insertToTextView(add: operationsToReduce[0])
+                text.removeAll()
+                addingText(addText: operationsToReduce[0])
+            }
         }
     }
 }
