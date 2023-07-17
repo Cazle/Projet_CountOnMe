@@ -50,14 +50,17 @@ class ViewController: UIViewController, functionsToDelegate {
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         calculator.calculate()
     }
+    
     func alertFunction(title: String, message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC, animated: true, completion: nil)
     }
+    
     func insertToTextView(add: String){
         textView.text.append(add)
     }
+    
     func viewEqualNone(){
         textView.text = ""
     }

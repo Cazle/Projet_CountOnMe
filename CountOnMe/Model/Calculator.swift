@@ -91,7 +91,7 @@ class Calculator {
             
             if let formatedNumber = formater.string(from: NSNumber(value: result)) {
                 operationsToReduce = Array(operationsToReduce.dropFirst(3))
-                operationsToReduce.insert("\(result)", at: 0)
+                operationsToReduce.insert("\(formatedNumber)", at: 0)
                 delegate?.viewEqualNone()
                 delegate?.insertToTextView(add: operationsToReduce[0])
                 text.removeAll()
