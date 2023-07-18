@@ -12,23 +12,19 @@
         <scene sceneID="BSq-PH-znu">
             <objects>
                 <viewController id="eqK-jh-KKu" customClass="ViewController" customModule="CountOnMe" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="tQO-Y2-VWE"/>
-                        <viewControllerLayoutGuide type="bottom" id="Fhl-dE-gDl"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eIh-hr-C95">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="1+1=2" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="T2H-yn-nBB">
-                                <rect key="frame" x="10" y="44" width="394" height="391"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="1+1=2" textAlignment="right" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T2H-yn-nBB">
+                                <rect key="frame" x="10" y="44" width="394" height="381"/>
                                 <color key="backgroundColor" red="0.24527746819999999" green="0.53481305040000005" blue="0.58749136739999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ogr-Aw-e1h">
-                                <rect key="frame" x="5" y="799" width="404" height="63"/>
+                                <rect key="frame" x="5" y="789" width="404" height="63"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DQU-P5-55X" userLabel="/">
                                         <rect key="frame" x="0.0" y="0.0" width="89.666666666666671" height="63"/>
@@ -76,11 +72,11 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="gdz-o2-mNk" userLabel="resetEqual">
-                                <rect key="frame" x="5" y="731" width="404" height="63"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="gdz-o2-mNk" userLabel="resetEqual">
+                                <rect key="frame" x="5" y="721" width="404" height="63"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0W-tS-C3Y" userLabel="AC">
-                                        <rect key="frame" x="0.0" y="0.0" width="187" height="63"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="194.66666666666666" height="63"/>
                                         <color key="backgroundColor" red="0.66799789669999998" green="0.47512125970000002" blue="0.25860109930000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="23"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -93,7 +89,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qMj-Of-bCU">
-                                        <rect key="frame" x="217" y="0.0" width="187" height="63"/>
+                                        <rect key="frame" x="209.66666666666663" y="0.0" width="194.33333333333337" height="63"/>
                                         <color key="backgroundColor" red="0.94643473759999996" green="0.64318747399999998" blue="0.12665354140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="42"/>
                                         <state key="normal" title="=">
@@ -106,7 +102,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="isI-Gg-Iye">
-                                <rect key="frame" x="10" y="450" width="394" height="266"/>
+                                <rect key="frame" x="10" y="440" width="394" height="266"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="U2a-5D-kgc" userLabel="leftNumbers">
                                         <rect key="frame" x="0.0" y="0.0" width="121.33333333333333" height="192"/>
@@ -236,24 +232,23 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="AWJ-Vl-uau"/>
+                        <viewLayoutGuide key="safeArea" id="sDr-8G-7Pd"/>
                         <color key="backgroundColor" red="0.87536688539999996" green="0.84808511389999996" blue="0.83804947389999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ogr-Aw-e1h" firstAttribute="leading" secondItem="AWJ-Vl-uau" secondAttribute="leading" constant="5" id="0ra-Le-Vdo"/>
+                            <constraint firstItem="ogr-Aw-e1h" firstAttribute="leading" secondItem="sDr-8G-7Pd" secondAttribute="leading" constant="5" id="0ra-Le-Vdo"/>
                             <constraint firstItem="ogr-Aw-e1h" firstAttribute="top" secondItem="gdz-o2-mNk" secondAttribute="bottom" constant="5" id="1LJ-rh-etF"/>
-                            <constraint firstItem="T2H-yn-nBB" firstAttribute="centerX" secondItem="eIh-hr-C95" secondAttribute="centerX" id="Hlp-37-QYx"/>
-                            <constraint firstItem="T2H-yn-nBB" firstAttribute="top" secondItem="AWJ-Vl-uau" secondAttribute="top" id="Jio-G2-MM8"/>
-                            <constraint firstItem="T2H-yn-nBB" firstAttribute="leading" secondItem="AWJ-Vl-uau" secondAttribute="leading" constant="10" id="LbV-ac-bxi"/>
-                            <constraint firstItem="ogr-Aw-e1h" firstAttribute="centerX" secondItem="eIh-hr-C95" secondAttribute="centerX" id="Q5g-vW-gRn"/>
-                            <constraint firstItem="gdz-o2-mNk" firstAttribute="leading" secondItem="AWJ-Vl-uau" secondAttribute="leading" constant="5" id="TRI-7C-Yii"/>
+                            <constraint firstItem="T2H-yn-nBB" firstAttribute="centerX" secondItem="sDr-8G-7Pd" secondAttribute="centerX" id="Hlp-37-QYx"/>
+                            <constraint firstItem="T2H-yn-nBB" firstAttribute="top" secondItem="sDr-8G-7Pd" secondAttribute="top" id="Jio-G2-MM8"/>
+                            <constraint firstItem="T2H-yn-nBB" firstAttribute="leading" secondItem="sDr-8G-7Pd" secondAttribute="leading" constant="10" id="LbV-ac-bxi"/>
+                            <constraint firstItem="sDr-8G-7Pd" firstAttribute="bottom" secondItem="ogr-Aw-e1h" secondAttribute="bottom" constant="10" id="Rfh-JQ-opw"/>
+                            <constraint firstItem="gdz-o2-mNk" firstAttribute="leading" secondItem="sDr-8G-7Pd" secondAttribute="leading" constant="5" id="TRI-7C-Yii"/>
                             <constraint firstItem="gdz-o2-mNk" firstAttribute="top" secondItem="isI-Gg-Iye" secondAttribute="bottom" constant="15" id="V8A-uK-bRa"/>
-                            <constraint firstItem="AWJ-Vl-uau" firstAttribute="trailing" secondItem="T2H-yn-nBB" secondAttribute="trailing" constant="10" id="Zmi-mS-LB2"/>
-                            <constraint firstItem="AWJ-Vl-uau" firstAttribute="trailing" secondItem="gdz-o2-mNk" secondAttribute="trailing" constant="5" id="fM9-ON-w79"/>
+                            <constraint firstItem="sDr-8G-7Pd" firstAttribute="trailing" secondItem="T2H-yn-nBB" secondAttribute="trailing" constant="10" id="Zmi-mS-LB2"/>
+                            <constraint firstItem="sDr-8G-7Pd" firstAttribute="trailing" secondItem="gdz-o2-mNk" secondAttribute="trailing" constant="5" id="fM9-ON-w79"/>
                             <constraint firstItem="isI-Gg-Iye" firstAttribute="top" secondItem="T2H-yn-nBB" secondAttribute="bottom" constant="15" id="gBG-UC-uTB"/>
-                            <constraint firstItem="ogr-Aw-e1h" firstAttribute="bottom" secondItem="AWJ-Vl-uau" secondAttribute="bottom" id="iqA-8Y-WPg"/>
-                            <constraint firstItem="isI-Gg-Iye" firstAttribute="leading" secondItem="AWJ-Vl-uau" secondAttribute="leading" constant="10" id="pDk-ON-wyC"/>
-                            <constraint firstItem="AWJ-Vl-uau" firstAttribute="trailing" secondItem="ogr-Aw-e1h" secondAttribute="trailing" constant="5" id="pda-W0-TAJ"/>
-                            <constraint firstItem="AWJ-Vl-uau" firstAttribute="trailing" secondItem="isI-Gg-Iye" secondAttribute="trailing" constant="10" id="uwk-eg-UQ4"/>
+                            <constraint firstItem="isI-Gg-Iye" firstAttribute="leading" secondItem="sDr-8G-7Pd" secondAttribute="leading" constant="10" id="pDk-ON-wyC"/>
+                            <constraint firstItem="sDr-8G-7Pd" firstAttribute="trailing" secondItem="ogr-Aw-e1h" secondAttribute="trailing" constant="5" id="pda-W0-TAJ"/>
+                            <constraint firstItem="sDr-8G-7Pd" firstAttribute="trailing" secondItem="isI-Gg-Iye" secondAttribute="trailing" constant="10" id="uwk-eg-UQ4"/>
                         </constraints>
                     </view>
                     <connections>

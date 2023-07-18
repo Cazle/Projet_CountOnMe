@@ -3,9 +3,9 @@ import Foundation
 
 class Calculator {
 
-    var delegate: functionsToDelegate?
+    weak var delegate: FunctionsToDelegate?
     
-    var text = ""
+    private (set) var text = ""
     
     var elements: [String] {
         return text.split(separator: " ").map { "\($0)" }
@@ -51,6 +51,19 @@ class Calculator {
         delegate?.insertToTextView(add: numbertext)
         addingText(addText: numbertext)
     }
+    func checkIfThereIsAPriority() -> Bool {
+        if text.contains("/") || text.contains("x") {
+            return true
+        }
+        return false
+    }
+    
+    func calculateThePriorityFirst() {
+        print("je suis la prio")
+        
+        var foundPriority = elements
+        
+    }
     
     func calculate() {
         guard expressionIsCorrect && expressionHaveEnoughElement else {
@@ -59,14 +72,18 @@ class Calculator {
         }
         // Create local copy of operations
         var operationsToReduce = elements
-        print(operationsToReduce)
+        
+       
         
         // Iterate over operations while an operand still here
         while operationsToReduce.count > 1 {
-            let left = Double(operationsToReduce[0])!
+            guard let left = Double(operationsToReduce[0]) else {return}
             let operand = operationsToReduce[1]
-            let right = Double(operationsToReduce[2])!
+            guard let right = Double(operationsToReduce[2]) else {return}
             
+            if checkIfThereIsAPriority() {
+                calculateThePriorityFirst()
+            }
         
             var result: Double = 0
             

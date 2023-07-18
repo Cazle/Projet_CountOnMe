@@ -1,15 +1,15 @@
 import UIKit
 
-protocol functionsToDelegate {
+protocol FunctionsToDelegate: AnyObject {
     func alertFunction(title: String, message: String)
     func insertToTextView(add: String)
     func viewEqualNone()
 }
 
-class ViewController: UIViewController, functionsToDelegate {
+class ViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     
-    let calculator = Calculator()
+   private let calculator = Calculator()
     
     // View Life cycles
     override func viewDidLoad() {
@@ -50,7 +50,9 @@ class ViewController: UIViewController, functionsToDelegate {
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         calculator.calculate()
     }
-    
+}
+
+extension ViewController: FunctionsToDelegate {
     func alertFunction(title: String, message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -65,4 +67,3 @@ class ViewController: UIViewController, functionsToDelegate {
         textView.text = ""
     }
 }
-
