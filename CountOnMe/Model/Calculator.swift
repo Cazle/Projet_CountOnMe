@@ -58,12 +58,43 @@ class Calculator {
         return false
     }
     
-    func calculateThePriorityFirst() {
-        print("je suis la prio")
+    func calculateThePriorityFirst() -> [String] {
+        var priorityToReduce = elements
+        while priorityToReduce.contains(where: {$0 == "/" || $0 == "x"}) {
+            if let index = priorityToReduce.firstIndex(where: {$0 == "/" || $0 == "x"}) {
+                guard let left = Double(priorityToReduce[index - 1]) else {break}
+                print(left)
+                let operand = priorityToReduce[index]
+                print(operand)
+                guard let right = Double(priorityToReduce[index + 1]) else {break}
+                print(right)
+                
+                var result : Double = 0
+                
+                switch operand {
+                case "x": result = left * right
+                case "/": result = left / right
+                default: delegate?.alertFunction(title: "Erreur", message: "Invalid input")
+                }
+                print(priorityToReduce, "Before the first index - 1")
+                priorityToReduce.remove(at: index - 1)
+                print(priorityToReduce, "After the first index - 1")
+                priorityToReduce.remove(at: index - 1)
+                print(priorityToReduce, "After the seconde index - 1")
+                priorityToReduce.remove(at: index - 1)
+                print(priorityToReduce, "After the third index - 1")
+                priorityToReduce.insert("\(result)", at: 2)
+                print(priorityToReduce, "Priority after insert result")
+                print(result, "Final result")
+                }
+            }
+        print(priorityToReduce, "return priority")
+        return priorityToReduce
         
-        var foundPriority = elements
+        }
+    
         
-    }
+    
     
     func calculate() {
         guard expressionIsCorrect && expressionHaveEnoughElement else {
@@ -71,22 +102,19 @@ class Calculator {
             return
         }
         // Create local copy of operations
+        var appendPriorityToElements = calculateThePriorityFirst()
         var operationsToReduce = elements
-        
+        print(operationsToReduce)
        
-        
+            
         // Iterate over operations while an operand still here
         while operationsToReduce.count > 1 {
+            
             guard let left = Double(operationsToReduce[0]) else {return}
             let operand = operationsToReduce[1]
             guard let right = Double(operationsToReduce[2]) else {return}
-            
-            if checkIfThereIsAPriority() {
-                calculateThePriorityFirst()
-            }
-        
+           
             var result: Double = 0
-            
             let formater = NumberFormatter()
             formater.numberStyle = .decimal
             formater.maximumFractionDigits = 2
@@ -103,7 +131,7 @@ class Calculator {
                     result = left / right
                 }
                 
-            default: fatalError("Unknown operator !")
+            default: delegate?.alertFunction(title: "Error", message: "Invalid operation")
             }
             
             if let formatedNumber = formater.string(from: NSNumber(value: result)) {
