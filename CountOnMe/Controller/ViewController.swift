@@ -27,20 +27,11 @@ class ViewController: UIViewController {
         calculator.addingNumberText(numbertext: numberText)
     }
     
-    @IBAction func tappedAdditionButton(_ sender: UIButton) {
-        calculator.addingOperand(operand: " + ")
-    }
-    
-    @IBAction func tappedSubstractionButton(_ sender: UIButton) {
-        calculator.addingOperand(operand: " - ")
-    }
-    
-    @IBAction func tappedMultiplicationButton(_ sender: UIButton) {
-        calculator.addingOperand(operand: " x ")
-    }
-    
-    @IBAction func tappedDivisionButton(_ sender: UIButton) {
-        calculator.addingOperand(operand: " / ")
+    @IBAction func operatorsButtons(_ sender: UIButton) {
+        guard let operators = sender.title(for: .normal) else {
+            return
+        }
+        calculator.addingOperand(operand: " \(operators) ")
     }
     
     @IBAction func tappedACButton(_ sender: UIButton) {
