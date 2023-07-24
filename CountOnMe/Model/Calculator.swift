@@ -1,10 +1,8 @@
 import Foundation
 
-
 class Calculator {
 
     weak var delegate: FunctionsToDelegate?
-    
     private (set) var text = ""
     
     var elements: [String] {
@@ -29,8 +27,8 @@ class Calculator {
     }
     
     func resetingCalculator() {
-        delegate?.viewEqualNone()
-        text = ""
+        delegate?.removeFromTextView()
+        text.removeAll()
     }
     func addingText(addText: String) {
         text.append(addText)
@@ -52,10 +50,9 @@ class Calculator {
         addingText(addText: numbertext)
     }
     
-    func printTheResult(of elements : [String]) {
-        delegate?.viewEqualNone()
+    func printTheResult(of elements: [String]) {
+        resetingCalculator()
         delegate?.insertToTextView(add: elements[0])
-        text.removeAll()
         addingText(addText: elements[0])
     }
     
@@ -75,7 +72,7 @@ class Calculator {
                 let operand = priorityToReduce[index]
                 guard let right = Double(priorityToReduce[index + 1]) else {break}
                 
-                var result : Double = 0
+                var result: Double = 0
                 
                 switch operand {
                 case "x": result = left * right
@@ -88,8 +85,8 @@ class Calculator {
                     }
                 default: delegate?.alertFunction(title: "Erreur", message: "Invalid input")
                 }
-                if let formateNumber = formatingNumbers(result){
-                    for _ in 0...2{
+                if let formateNumber = formatingNumbers(result) {
+                    for _ in 0...2 {
                         priorityToReduce.remove(at: index - 1)
                     }
                     priorityToReduce.insert("\(formateNumber)", at: index - 1)
@@ -101,12 +98,13 @@ class Calculator {
     }
     func calculate() {
         guard expressionIsCorrect && expressionHaveEnoughElement else {
-            delegate?.alertFunction(title: "Error", message: "Invalid behavior. You must have at least 3 elements, and don't finish by an operator. ")
+            delegate?.alertFunction(
+            title: "Error",
+            message: "Invalid behavior. You must have at least 3 elements, and don't finish by an operator. ")
             return
         }
         var appendPriorityToElements = calculateThePriorityFirst()
         while appendPriorityToElements.count > 1 {
-            
             guard let left = Double(appendPriorityToElements[0]) else {return}
             let operand = appendPriorityToElements[1]
             guard let right = Double(appendPriorityToElements[2]) else {return}
@@ -118,13 +116,11 @@ class Calculator {
             case "-": result = left - right
             default: delegate?.alertFunction(title: "Error", message: "Invalid operation")
             }
-            if let formatedNumber = formatingNumbers(result){
+            if let formatedNumber = formatingNumbers(result) {
                 appendPriorityToElements = Array(appendPriorityToElements.dropFirst(3))
                 appendPriorityToElements.insert("\(formatedNumber)", at: 0)
                 printTheResult(of: appendPriorityToElements)
             }
-            
-            
         }
     }
 }

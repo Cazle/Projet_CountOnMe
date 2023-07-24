@@ -3,13 +3,13 @@ import UIKit
 protocol FunctionsToDelegate: AnyObject {
     func alertFunction(title: String, message: String)
     func insertToTextView(add: String)
-    func viewEqualNone()
+    func removeFromTextView()
 }
 
 class ViewController: UIViewController {
-    @IBOutlet weak var textView: UITextView!
     
-   private let calculator = Calculator()
+    @IBOutlet weak var textView: UITextView!
+    private let calculator = Calculator()
     
     // View Life cycles
     override func viewDidLoad() {
@@ -50,11 +50,10 @@ extension ViewController: FunctionsToDelegate {
         present(alertVC, animated: true, completion: nil)
     }
     
-    func insertToTextView(add: String){
+    func insertToTextView(add: String) {
         textView.text.append(add)
     }
-    
-    func viewEqualNone(){
-        textView.text = ""
+    func removeFromTextView() {
+        textView.text.removeAll()
     }
 }
