@@ -2,8 +2,7 @@ import UIKit
 
 protocol FunctionsToDelegate: AnyObject {
     func alertFunction(title: String, message: String)
-    func insertToTextView(add: String)
-    func removeFromTextView()
+    func updateDisplay(with: String)
 }
 
 class ViewController: UIViewController {
@@ -31,7 +30,7 @@ class ViewController: UIViewController {
         guard let operators = sender.title(for: .normal) else {
             return
         }
-        calculator.addingOperand(operand: " \(operators) ")
+        calculator.addingOperand(operand: operators)
     }
     
     @IBAction func tappedACButton(_ sender: UIButton) {
@@ -44,16 +43,14 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: FunctionsToDelegate {
+    
     func alertFunction(title: String, message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC, animated: true, completion: nil)
     }
     
-    func insertToTextView(add: String) {
-        textView.text.append(add)
-    }
-    func removeFromTextView() {
-        textView.text.removeAll()
+    func updateDisplay(with text: String) {
+        textView.text = text
     }
 }

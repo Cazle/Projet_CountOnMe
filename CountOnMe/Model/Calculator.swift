@@ -3,7 +3,11 @@ import Foundation
 class Calculator {
 
     weak var delegate: FunctionsToDelegate?
-    private (set) var text = ""
+    private (set) var text = "" {
+        didSet {
+            delegate?.updateDisplay(with: text)
+        }
+    }
     
     var elements: [String] {
         return text.split(separator: " ").map { "\($0)" }
@@ -27,7 +31,6 @@ class Calculator {
     }
     
     func resetingCalculator() {
-        delegate?.removeFromTextView()
         text.removeAll()
     }
     func addingText(addText: String) {
@@ -35,8 +38,7 @@ class Calculator {
     }
     func addingOperand(operand: String) {
         if canAddOperator {
-            delegate?.insertToTextView(add: operand)
-            addingText(addText: operand)
+            addingText(addText: " \(operand) ")
         } else {
             delegate?.alertFunction(title: "Error", message: "You have to add one operator at a time.")
             return
@@ -44,26 +46,27 @@ class Calculator {
     }
     func addingNumberText(numbertext: String) {
         if expressionHaveResult {
-            delegate?.insertToTextView(add: "")
+            resetingCalculator()
         }
-        delegate?.insertToTextView(add: numbertext)
         addingText(addText: numbertext)
     }
     
     func printTheResult(of elements: [String]) {
         resetingCalculator()
-        delegate?.insertToTextView(add: elements[0])
         addingText(addText: elements[0])
     }
-    
-    func formatingNumbers(_ number: Double, style: NumberFormatter.Style = .decimal, maximumDigits: Int = 2) -> String? {
+    func dontStartWithAnOperand() {
+       
+    }
+        
+   private func formatingNumbers(_ number: Double, style: NumberFormatter.Style = .decimal, maximumDigits: Int = 2) -> String? {
         let formater = NumberFormatter()
         formater.numberStyle = style
         formater.maximumFractionDigits = maximumDigits
         return formater.string(from: NSNumber(value: number))
     }
     
-    func calculateThePriorityFirst() -> [String] {
+    private func calculateThePriorityFirst() -> [String] {
         var priorityToReduce = elements
         
         while priorityToReduce.contains(where: {$0 == "/" || $0 == "x"}) {
@@ -99,10 +102,11 @@ class Calculator {
     func calculate() {
         guard expressionIsCorrect && expressionHaveEnoughElement else {
             delegate?.alertFunction(
-            title: "Error",
-            message: "Invalid behavior. You must have at least 3 elements, and don't finish by an operator. ")
+                title: "Error",
+                message: "Invalid behavior. You must have at least 3 elements, and don't finish by an operator. ")
             return
         }
+        
         var appendPriorityToElements = calculateThePriorityFirst()
         while appendPriorityToElements.count > 1 {
             guard let left = Double(appendPriorityToElements[0]) else {return}
@@ -116,11 +120,9 @@ class Calculator {
             case "-": result = left - right
             default: delegate?.alertFunction(title: "Error", message: "Invalid operation")
             }
-            if let formatedNumber = formatingNumbers(result) {
                 appendPriorityToElements = Array(appendPriorityToElements.dropFirst(3))
-                appendPriorityToElements.insert("\(formatedNumber)", at: 0)
+                appendPriorityToElements.insert("\(result)", at: 0)
                 printTheResult(of: appendPriorityToElements)
-            }
         }
     }
 }
