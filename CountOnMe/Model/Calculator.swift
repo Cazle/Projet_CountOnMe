@@ -37,13 +37,14 @@ class Calculator {
         text.append(addText)
     }
     func addingOperand(operand: String) {
-        if canAddOperator {
+        if canAddOperator && dontStartWithAnOperand() {
             addingText(addText: " \(operand) ")
         } else {
-            delegate?.alertFunction(title: "Error", message: "You have to add one operator at a time.")
+            delegate?.alertFunction(title: "Error", message: "You can't start with an operator, or having two operators following each others.")
             return
         }
     }
+    
     func addingNumberText(numbertext: String) {
         if expressionHaveResult {
             resetingCalculator()
@@ -55,13 +56,16 @@ class Calculator {
         resetingCalculator()
         addingText(addText: elements[0])
     }
-    func dontStartWithAnOperand() {
-       
+    
+    func dontStartWithAnOperand() -> Bool {
+        if text.isEmpty {
+            return false
+        }
+        return true
     }
         
-   private func formatingNumbers(_ number: Double, style: NumberFormatter.Style = .decimal, maximumDigits: Int = 2) -> String? {
+    private func formatingNumbers(_ number: Double, maximumDigits: Int = 2) -> String? {
         let formater = NumberFormatter()
-        formater.numberStyle = style
         formater.maximumFractionDigits = maximumDigits
         return formater.string(from: NSNumber(value: number))
     }
@@ -106,12 +110,11 @@ class Calculator {
                 message: "Invalid behavior. You must have at least 3 elements, and don't finish by an operator. ")
             return
         }
-        
-        var appendPriorityToElements = calculateThePriorityFirst()
-        while appendPriorityToElements.count > 1 {
-            guard let left = Double(appendPriorityToElements[0]) else {return}
-            let operand = appendPriorityToElements[1]
-            guard let right = Double(appendPriorityToElements[2]) else {return}
+        var operationToReduce = calculateThePriorityFirst()
+        while operationToReduce.count > 1 {
+            guard let left = Double(operationToReduce[0]) else {return}
+            let operand = operationToReduce[1]
+            guard let right = Double(operationToReduce[2]) else {return}
            
             var result: Double = 0
             
@@ -120,9 +123,11 @@ class Calculator {
             case "-": result = left - right
             default: delegate?.alertFunction(title: "Error", message: "Invalid operation")
             }
-                appendPriorityToElements = Array(appendPriorityToElements.dropFirst(3))
-                appendPriorityToElements.insert("\(result)", at: 0)
-                printTheResult(of: appendPriorityToElements)
+            if let formatedNumber = formatingNumbers(result) {
+                operationToReduce = Array(operationToReduce.dropFirst(3))
+                operationToReduce.insert("\(formatedNumber)", at: 0)
+                printTheResult(of: operationToReduce)
+            }
         }
     }
 }
