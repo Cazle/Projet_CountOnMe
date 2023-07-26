@@ -107,7 +107,7 @@ class Calculator {
         guard expressionIsCorrect && expressionHaveEnoughElement else {
             delegate?.alertFunction(
                 title: "Error",
-                message: "Invalid behavior. You must have at least 3 elements, and don't finish by an operator. ")
+                message: "Invalid behavior. You must have at least 3 elements, and don't finish by an operator.")
             return
         }
         var operationToReduce = calculateThePriorityFirst()

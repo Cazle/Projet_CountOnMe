@@ -103,6 +103,54 @@ final class CountOnMeTests: XCTestCase {
         XCTAssertEqual(delegateSpy.alertMessage, "You can't start with an operator, or having two operators following each others.")
         XCTAssertEqual(sut.text, "")
     }
+    func test_preventingHavingAnIssueWithTwoFollowingOperator() {
+        let delegateSpy = SpyDelegate()
+        let sut = Calculator()
+        sut.delegate = delegateSpy
+        
+        sut.addingNumberText(numbertext: "2")
+        sut.addingOperand(operand: "/")
+        sut.addingOperand(operand: "x")
+        
+        XCTAssertTrue(delegateSpy.alertIsLaunched)
+        XCTAssertEqual(delegateSpy.alertTitle, "Error")
+        XCTAssertEqual(delegateSpy.alertMessage, "You can't start with an operator, or having two operators following each others.")
+        XCTAssertEqual(sut.text, "2 / ")
+    }
+    func test_preventingIfTheCalculatorDoesntHaveEnoughNumberOrElements() {
+        let delegateSpy = SpyDelegate()
+        let sut = Calculator()
+        sut.delegate = delegateSpy
+        
+        sut.addingNumberText(numbertext: "2")
+        sut.calculate()
+        
+        XCTAssertTrue(delegateSpy.alertIsLaunched)
+        XCTAssertEqual(delegateSpy.alertTitle, "Error")
+        XCTAssertEqual(delegateSpy.alertMessage, "Invalid behavior. You must have at least 3 elements, and don't finish by an operator.")
+        XCTAssertEqual(sut.text, "2")
+    }
+    func test_preventingTheUserToFinishWithAnOperator() {
+        let delegateSpy = SpyDelegate()
+        let sut = Calculator()
+        sut.delegate = delegateSpy
+        
+        sut.addingNumberText(numbertext: "2")
+        sut.addingOperand(operand: "x")
+        sut.addingNumberText(numbertext: "2")
+        sut.addingOperand(operand: "/")
+        sut.calculate()
+        
+        XCTAssertTrue(delegateSpy.alertIsLaunched)
+        XCTAssertEqual(delegateSpy.alertTitle, "Error")
+        XCTAssertEqual(delegateSpy.alertMessage, "Invalid behavior. You must have at least 3 elements, and don't finish by an operator.")
+        XCTAssertEqual(sut.text, "2 x 2 / ")
+    }
+    func test_functionToAddText() {
+        let sut = Calculator()
+        sut.addingText(addText: "1")
+        XCTAssertEqual(sut.text, "1")
+    }
     func test_resetingTheCalculatorToEmpty() {
         let sut = Calculator()
         sut.resetingCalculator()
