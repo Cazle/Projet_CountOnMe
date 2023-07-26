@@ -52,12 +52,12 @@ class Calculator {
         addingText(addText: numbertext)
     }
     
-    func printTheResult(of elements: [String]) {
+   private func printTheResult(of elements: [String]) {
         resetingCalculator()
         addingText(addText: elements[0])
     }
     
-    func dontStartWithAnOperand() -> Bool {
+   private func dontStartWithAnOperand() -> Bool {
         if text.isEmpty {
             return false
         }
@@ -92,11 +92,11 @@ class Calculator {
                     }
                 default: delegate?.alertFunction(title: "Erreur", message: "Invalid input")
                 }
-                if let formateNumber = formatingNumbers(result) {
+                if let formatedNumber = formatingNumbers(result) {
                     for _ in 0...2 {
                         priorityToReduce.remove(at: index - 1)
                     }
-                    priorityToReduce.insert("\(formateNumber)", at: index - 1)
+                    priorityToReduce.insert("\(formatedNumber)", at: index - 1)
                     printTheResult(of: priorityToReduce)
                 }
             }
