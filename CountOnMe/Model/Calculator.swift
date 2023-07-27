@@ -13,7 +13,6 @@ class Calculator {
         return text.split(separator: " ").map { "\($0)" }
     }
     
-    // Error check computed variables
     var expressionIsCorrect: Bool {
         return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "/"
     }
@@ -21,9 +20,11 @@ class Calculator {
     var expressionHaveEnoughElement: Bool {
         return elements.count >= 3
     }
+    
     func resetingCalculator() {
         text.removeAll()
     }
+    
     func addingText(addText: String) {
         text.append(addText)
     }
