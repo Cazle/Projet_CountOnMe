@@ -26,10 +26,6 @@ class Calculator {
         return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "/"
     }
     
-    var expressionHaveResult: Bool {
-        return text.firstIndex(of: "=") != nil
-    }
-    
     func resetingCalculator() {
         text.removeAll()
     }
@@ -46,9 +42,6 @@ class Calculator {
     }
     
     func addingNumberText(numbertext: String) {
-        if expressionHaveResult {
-            resetingCalculator()
-        }
         addingText(addText: numbertext)
     }
     
