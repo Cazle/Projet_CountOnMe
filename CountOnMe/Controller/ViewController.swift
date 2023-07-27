@@ -10,15 +10,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     private let calculator = Calculator()
     
-    // View Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.text = ""
         calculator.addingText(addText: "")
         calculator.delegate = self
     }
-
-    // View actions
+    
     @IBAction func tappedNumberButton(_ sender: UIButton) {
         guard let numberText = sender.title(for: .normal) else {
             return
