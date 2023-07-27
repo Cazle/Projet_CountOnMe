@@ -21,11 +21,6 @@ class Calculator {
     var expressionHaveEnoughElement: Bool {
         return elements.count >= 3
     }
-    
-    var canAddOperator: Bool {
-        return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "/"
-    }
-    
     func resetingCalculator() {
         text.removeAll()
     }
@@ -33,7 +28,7 @@ class Calculator {
         text.append(addText)
     }
     func addingOperand(operand: String) {
-        if canAddOperator && dontStartWithAnOperand() {
+        if expressionIsCorrect && dontStartWithAnOperand() {
             addingText(addText: " \(operand) ")
         } else {
             delegate?.alertFunction(title: "Error", message: "You can't start with an operator, or having two operators following each others.")

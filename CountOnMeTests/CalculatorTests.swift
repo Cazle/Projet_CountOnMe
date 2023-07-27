@@ -18,61 +18,61 @@ final class SpyDelegate: FunctionsToDelegate {
 final class CountOnMeTests: XCTestCase {
     func test_whenTheUserTryAnAdditionAndWantToGetTheResult() {
         let sut = Calculator()
-        sut.addingNumberText(numbertext: "1")
+        sut.addText(text: "1")
         sut.addingOperand(operand: "+")
-        sut.addingNumberText(numbertext: "1")
+        sut.addText(text: "1")
         sut.calculate()
         XCTAssertEqual(sut.text, "2")
     }
     func test_whenUserTryASubstractionAndWantToGetResult() {
         let sut = Calculator()
-        sut.addingNumberText(numbertext: "6")
+        sut.addText(text: "6")
         sut.addingOperand(operand: "-")
-        sut.addingNumberText(numbertext: "1")
+        sut.addText(text: "1")
         sut.calculate()
         XCTAssertEqual(sut.text, "5")
     }
     func test_whenUserTryADivisionAndWantToGetResult() {
         let sut = Calculator()
-        sut.addingNumberText(numbertext: "10")
+        sut.addText(text: "10")
         sut.addingOperand(operand: "/")
-        sut.addingNumberText(numbertext: "2")
+        sut.addText(text: "2")
         sut.calculate()
         XCTAssertEqual(sut.text, "5")
     }
     func test_whenUserTryAMultiplicationAndWantToGetResult() {
         let sut = Calculator()
-        sut.addingNumberText(numbertext: "4")
+        sut.addText(text: "4")
         sut.addingOperand(operand: "x")
-        sut.addingNumberText(numbertext: "4")
+        sut.addText(text: "4")
         sut.calculate()
         XCTAssertEqual(sut.text, "16")
     }
     func test_whenUserEnterACalculWithAMultiplicationPriorityInIt() {
         let sut = Calculator()
-        sut.addingNumberText(numbertext: "2")
+        sut.addText(text: "2")
         sut.addingOperand(operand: "+")
-        sut.addingNumberText(numbertext: "2")
+        sut.addText(text: "2")
         sut.addingOperand(operand: "x")
-        sut.addingNumberText(numbertext: "2")
+        sut.addText(text: "2")
         sut.calculate()
         XCTAssertEqual(sut.text, "6")
     }
     func test_whenUserEnterACalculWithADivisionMultiplicationInIt() {
         let sut = Calculator()
-        sut.addingNumberText(numbertext: "2")
+        sut.addText(text: "2")
         sut.addingOperand(operand: "+")
-        sut.addingNumberText(numbertext: "2")
+        sut.addText(text: "2")
         sut.addingOperand(operand: "/")
-        sut.addingNumberText(numbertext: "2")
+        sut.addText(text: "2")
         sut.calculate()
         XCTAssertEqual(sut.text, "3")
     }
     func test_whenUserDivideTheResultIsADecimal() {
         let sut = Calculator()
-        sut.addingNumberText(numbertext: "2")
+        sut.addText(text: "2")
         sut.addingOperand(operand: "/")
-        sut.addingNumberText(numbertext: "6")
+        sut.addText(text: "6")
         sut.calculate()
         XCTAssertEqual(sut.text, "0.33")
     }
@@ -81,9 +81,9 @@ final class CountOnMeTests: XCTestCase {
         let sut = Calculator()
         sut.delegate = delegateSpy
         
-        sut.addingNumberText(numbertext: "2")
+        sut.addText(text: "2")
         sut.addingOperand(operand: "/")
-        sut.addingNumberText(numbertext: "0")
+        sut.addText(text: "0")
         sut.calculate()
         
         XCTAssertTrue(delegateSpy.alertIsLaunched)
@@ -108,7 +108,7 @@ final class CountOnMeTests: XCTestCase {
         let sut = Calculator()
         sut.delegate = delegateSpy
         
-        sut.addingNumberText(numbertext: "2")
+        sut.addText(text: "2")
         sut.addingOperand(operand: "/")
         sut.addingOperand(operand: "x")
         
@@ -122,7 +122,7 @@ final class CountOnMeTests: XCTestCase {
         let sut = Calculator()
         sut.delegate = delegateSpy
         
-        sut.addingNumberText(numbertext: "2")
+        sut.addText(text: "2")
         sut.calculate()
         
         XCTAssertTrue(delegateSpy.alertIsLaunched)
@@ -135,9 +135,9 @@ final class CountOnMeTests: XCTestCase {
         let sut = Calculator()
         sut.delegate = delegateSpy
         
-        sut.addingNumberText(numbertext: "2")
+        sut.addText(text: "2")
         sut.addingOperand(operand: "x")
-        sut.addingNumberText(numbertext: "2")
+        sut.addText(text: "2")
         sut.addingOperand(operand: "/")
         sut.calculate()
         
