@@ -2,8 +2,8 @@ import Foundation
 
 class Calculator {
 
-    weak var delegate: FunctionsToDelegate?
-    private (set) var text = "" {
+    weak var delegate: CalculatorDelegate?
+    private var text = "" {
         didSet {
             delegate?.updateDisplay(with: text)
         }
@@ -32,7 +32,7 @@ class Calculator {
         if expressionIsCorrect && dontStartWithAnOperand() {
             addingText(addText: " \(operand) ")
         } else {
-            delegate?.alertFunction(title: "Error", message: "You can't start with an operator, or having two operators following each others.")
+            delegate?.alertFunction(message: "You can't start with an operator, or having two operators following each others.")
             return
         }
     }
@@ -41,16 +41,13 @@ class Calculator {
         addingText(addText: numbertext)
     }
     
-   private func printTheResult(of elements: [String]) {
+   private func showTheResult(of elements: [String]) {
         resetingCalculator()
         addingText(addText: elements[0])
     }
     
    private func dontStartWithAnOperand() -> Bool {
-        if text.isEmpty {
-            return false
-        }
-        return true
+       !text.isEmpty
     }
         
     private func formatingNumbers(_ number: Double, maximumDigits: Int = 2) -> String? {
@@ -74,19 +71,19 @@ class Calculator {
                 case "x": result = left * right
                 case "/":
                     if right == 0 {
-                        delegate?.alertFunction(title: "Error", message: "Can't divide by zero")
+                        delegate?.alertFunction(message: "Can't divide by zero")
                         resetingCalculator()
                     } else {
                         result = left / right
                     }
-                default: delegate?.alertFunction(title: "Erreur", message: "Invalid input")
+                default: delegate?.alertFunction(message: "Invalid input")
                 }
                 if let formatedNumber = formatingNumbers(result) {
                     for _ in 0...2 {
                         priorityToReduce.remove(at: index - 1)
                     }
                     priorityToReduce.insert("\(formatedNumber)", at: index - 1)
-                    printTheResult(of: priorityToReduce)
+                    showTheResult(of: priorityToReduce)
                 }
             }
         }
@@ -95,7 +92,6 @@ class Calculator {
     func calculate() {
         guard expressionIsCorrect && expressionHaveEnoughElement else {
             delegate?.alertFunction(
-                title: "Error",
                 message: "Invalid behavior. You must have at least 3 elements, and don't finish by an operator.")
             return
         }
@@ -110,12 +106,12 @@ class Calculator {
             switch operand {
             case "+": result = left + right
             case "-": result = left - right
-            default: delegate?.alertFunction(title: "Error", message: "Invalid operation")
+            default: delegate?.alertFunction(message: "Invalid operation")
             }
             if let formatedNumber = formatingNumbers(result) {
                 operationToReduce = Array(operationToReduce.dropFirst(3))
                 operationToReduce.insert("\(formatedNumber)", at: 0)
-                printTheResult(of: operationToReduce)
+                showTheResult(of: operationToReduce)
             }
         }
     }

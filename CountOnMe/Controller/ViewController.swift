@@ -1,7 +1,7 @@
 import UIKit
 
-protocol FunctionsToDelegate: AnyObject {
-    func alertFunction(title: String, message: String)
+protocol CalculatorDelegate: AnyObject {
+    func alertFunction(message: String)
     func updateDisplay(with: String)
 }
 
@@ -40,10 +40,10 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: FunctionsToDelegate {
+extension ViewController: CalculatorDelegate {
     
-    func alertFunction(title: String, message: String) {
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    func alertFunction(message: String) {
+        let alertVC = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC, animated: true, completion: nil)
     }
